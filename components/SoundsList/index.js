@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import { StyleSheet, View, FlatList, Text } from 'react-native';
 
+import Sound from 'react-native-sound'
 import SoundCard from '../SoundCard'
 
 class SoundsList extends PureComponent {
@@ -10,15 +11,39 @@ class SoundsList extends PureComponent {
 
     state = {selected: (new Map(): Map<string, boolean>)}
 
+    playSound = () =>{
+        console.log(state.selected)
+    }
     _keyExtractor = (item, index) => item.id;
     
     _onPressItem = (id: string) => {
         this.setState((state) => {
           const selected = new Map(state.selected);
-          selected.set(id, !selected.get(id)); // toggle
+          const soundState = selected.get(id);
+          if(soundState){
+            let whoosh = selected.get(id)
+            whoosh.stop(() => {
+                // Note: If you want to play a sound after stopping and rewinding it,
+                // it is important to call play() in a callback.
+                console.log('stopped the sound')
+            });
+            selected.delete(id); // toggle 
+          } else{
+            let whoosh = new Sound('rain.mp3', Sound.MAIN_BUNDLE, error => {
+                if (error) {
+                    console.log('failed to load the sound', error);
+                    return;
+                }
+                console.log('duration in seconds: ' + whoosh.getDuration() + 'number of channels: ' + whoosh.getNumberOfChannels());
+                whoosh.play(() => {
+                    // Release when it's done so we're not using up resources
+                    console.log('playing')
+                  }) 
+            });
+            selected.set(id, whoosh); // toggle           
+          }
           return {selected};
         });
-        
       };
       
     _renderItem = ({item}) => (

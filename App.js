@@ -5,7 +5,6 @@
  */
 
 import React from 'react';
-import Sound from 'react-native-sound'
 
 import RootApp from './components/App'
 
