@@ -1,60 +1,55 @@
-import React, { PureComponent } from 'react'
+import React, { PureComponent } from 'react';
 import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
 
-import WeatherIcons from '../../data/weatherIcons'
-
-class SoundCard extends PureComponent {
-    constructor(props) {
-        super(props);
-    }
-
-    _onPress = () => {
-        this.props.onPressItem(this.props.id);
-    };
-
-    render() {
-        const { selected } = this.props
-        const { title, category } = this.props.item
-        return (
-            <TouchableOpacity style={styles.container} onPress={this._onPress}>
-                <View style={styles.card}>
-                    <View style={styles.image}>
-                        <Image source={WeatherIcons[category]} />
-                    </View>
-                    <Text style={[
-                        styles.text, 
-                        selected ? styles.textSelected : null,
-                        ]}>
-                        {title}</Text>
-                    </View>      
-                </TouchableOpacity>      
-        )
-    }
-}
+import WeatherIcons from '../../constants/weatherIcons'
 
 const styles = StyleSheet.create({
-    container:{
-        display: 'flex',
-        flexGrow: 1,
-        padding: 5,
-    },
-    card: {
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        backgroundColor: '#F0F2F0',
-        padding: 10,
-        borderRadius: 4
-    },
-    image: {
-        paddingBottom: 10
-    },
-    text: {
-        color: "black"
-    },
-    textSelected: {
-        color: '#F4511E'
-    }
+  container: {
+    display: 'flex',
+    flexGrow: 1,
+    padding: 5,
+  },
+  card: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    backgroundColor: '#F0F2F0',
+    padding: 10,
+    borderRadius: 4,
+  },
+  image: {
+    paddingBottom: 10,
+  },
+  icon: {
+    color: '#1E88E5',
+    opacity: 0.8,
+  },
+  textSelected: {
+    color: '#F4511E',
+  },
 });
+class SoundCard extends PureComponent {
+  _onPress = () => {
+    this.props.onPressItem(this.props.id);
+  };
 
-export default SoundCard
+  render() {
+    const { selected } = this.props;
+    const { title, category } = this.props.item;
+
+    return (
+      <TouchableOpacity style={styles.container} onPress={this._onPress}>
+        <View style={styles.card}>
+          <View style={styles.image}>
+            <Text style={styles.icon}>{category}</Text>
+          </View>
+          <Text style={[styles.text, selected ? styles.textSelected : null]}>
+            {title}
+          </Text>
+        </View>
+      </TouchableOpacity>
+    );
+  }
+}
+
+export default SoundCard;
