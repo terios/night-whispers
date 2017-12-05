@@ -18,6 +18,7 @@ class SoundsList extends PureComponent {
           selected.set(id, !selected.get(id)); // toggle
           return {selected};
         });
+        
       };
       
     _renderItem = ({item}) => (

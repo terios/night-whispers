@@ -1,6 +1,6 @@
 const Icons = {
-    rain: require("../images/rain.png"),
-    storm: require("../images/storm.png"),
+    rain: require("../assets/images/rain.png"),
+    storm: require("../assets/images/storm.png"),
 }
 
 export default Icons

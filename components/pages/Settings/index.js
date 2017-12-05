@@ -13,7 +13,7 @@ class Landing extends Component {
         tabBarLabel: 'Notifications',
         tabBarIcon: ({ tintColor }) => (
           <Image
-            source={require('./settings.png')}
+            source={require('../../../assets/images/settings.png')}
             style={[styles.icon, {tintColor: tintColor}]}
           />
         ),

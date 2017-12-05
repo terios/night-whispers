@@ -15,7 +15,7 @@ class Landing extends Component {
         // Note: By default the icon is only shown on iOS. Search the showIcon option below.
         tabBarIcon: ({ tintColor }) => (
           <Image
-            source={require('./home.png')}
+            source={require('../../../assets/images/home.png')}
             style={[styles.icon, {tintColor: tintColor}]}
           />
         ),
