@@ -14,8 +14,9 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'center',
     backgroundColor: '#F0F2F0',
-    padding: 10,
-    borderRadius: 4,
+    padding: 15,
+    borderRadius: 6,
+    opacity: 0.8,
   },
   image: {
     paddingBottom: 10,
