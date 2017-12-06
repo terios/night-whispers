@@ -6,10 +6,13 @@ import Template from '../../templates';
 const styles = StyleSheet.create({
   container: {
     display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    width: '100%',
   },
-  icon: {
-    width: 26,
-    height: 26,
+  message: {
+    fontSize: 40,
+    color: 'white',
   },
 });
 
@@ -32,7 +35,9 @@ class Landing extends Component {
     const gradient = ['#348F50', '#56B4D3']
     return (
       <Template gradient={gradient}>
-        <Text>Settings</Text>
+        <View style={styles.container}>
+          <Text style={styles.message} >COMING SOON</Text>
+        </View>
       </Template>
     )
   }

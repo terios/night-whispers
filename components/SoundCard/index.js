@@ -7,19 +7,19 @@ const styles = StyleSheet.create({
   container: {
     display: 'flex',
     flexGrow: 1,
-    padding: 5,
+    padding: 15,
   },
   card: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     backgroundColor: '#F0F2F0',
-    padding: 15,
+    padding: 10,
     borderRadius: 6,
-    opacity: 0.8,
+    opacity: 0.7,
   },
   image: {
-    paddingBottom: 10,
+    paddingBottom: 5,
   },
   icon: {
     color: '#1E88E5',
@@ -73,6 +73,8 @@ class SoundCard extends PureComponent {
             minimumValue={0}
             maximumValue={10}
             step={1}
+            animateTransitions={true}
+            animationType='spring'
             thumbTouchSize={{ width: 40, height: 40 }}
             style={styles.volumeSlider}
             trackStyle={styles.trackStyle}
