@@ -4,6 +4,8 @@ import { StyleSheet, View, FlatList, Text } from 'react-native';
 import Sound from 'react-native-sound';
 import SoundCard from '../SoundCard';
 
+import Sounds from '../../data/sounds'
+
 class SoundsList extends PureComponent {
 
   state = { selected: (new Map(): Map<string, boolean>) };
@@ -13,20 +15,22 @@ class SoundsList extends PureComponent {
   };
   _keyExtractor = (item, index) => item.id;
 
-  _onPressItem = (id: string) => {
+  _onPressItem = (id: string, fileName: string) => {
+
+    console.log("ooool")
     this.setState((state) => {
       const selected = new Map(state.selected);
       const soundState = selected.get(id);
+
       if (soundState) {
+        console.log('2')
         const whoosh = selected.get(id);
         whoosh.stop(() => {
-          // Note: If you want to play a sound after stopping and rewinding it,
-          // it is important to call play() in a callback.
           console.log('stopped the sound');
         });
         selected.delete(id); // toggle
       } else {
-        const whoosh = new Sound('rain.mp3', Sound.MAIN_BUNDLE, (error) => {
+       const whoosh = new Sound(fileName, Sound.MAIN_BUNDLE, (error) => {
           if (error) {
             console.log('failed to load the sound', error);
             return;
@@ -58,10 +62,7 @@ class SoundsList extends PureComponent {
     return (
       <View style={styles.container}>
         <FlatList
-          data={[
-            { id: 0, title: 'Heavy rain', category: 'rain' },
-            { id: 1, title: 'Rain drops', category: 'storm_rain' },
-          ]}
+          data={Sounds}
           numColumns={2}
           extraData={this.state}
           renderItem={this._renderItem}

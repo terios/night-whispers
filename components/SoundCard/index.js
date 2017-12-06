@@ -30,18 +30,18 @@ const styles = StyleSheet.create({
 });
 class SoundCard extends PureComponent {
   _onPress = () => {
-    this.props.onPressItem(this.props.id);
+    this.props.onPressItem(this.props.id, this.props.item.fileName);
   };
 
   render() {
     const { selected } = this.props;
-    const { title, category } = this.props.item;
+    const { title, category, icon } = this.props.item;
 
     return (
       <TouchableOpacity style={styles.container} onPress={this._onPress}>
         <View style={styles.card}>
           <View style={styles.image}>
-            <Text style={styles.icon}>{category}</Text>
+            <Image source={icon}/>
           </View>
           <Text style={[styles.text, selected ? styles.textSelected : null]}>
             {title}

@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -41,6 +42,9 @@
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		9B35DF0176354C108205D2B1 /* weathericons-regular-webfont.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = DC1E82E2C9B0448F8C68D781 /* weathericons-regular-webfont.woff2 */; };
 		A82A40491FD7070C00C902D3 /* rain.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A82A40481FD7063300C902D3 /* rain.mp3 */; };
+		A82A40911FD80E6A00C902D3 /* sea.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A82A408F1FD80E6A00C902D3 /* sea.mp3 */; };
+		A82A40921FD80E6A00C902D3 /* whale.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A82A40901FD80E6A00C902D3 /* whale.mp3 */; };
+		A82A40941FD841F900C902D3 /* river.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A82A40931FD841F200C902D3 /* river.mp3 */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
 		D9713605E2E04D36BDFC1AF7 /* libReactNativeConfig.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B88F68D989354EE998F37FC1 /* libReactNativeConfig.a */; };
 /* End PBXBuildFile section */
@@ -352,6 +356,9 @@
 		8419DD217ACF4717A0636F57 /* weathericons-regular-webfont.woff */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "weathericons-regular-webfont.woff"; path = "../assets/fonts/weathericons-regular-webfont.woff"; sourceTree = "<group>"; };
 		A5C21E4585DB4882BE2BAE13 /* libRNSound.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNSound.a; sourceTree = "<group>"; };
 		A82A40481FD7063300C902D3 /* rain.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = rain.mp3; sourceTree = "<group>"; };
+		A82A408F1FD80E6A00C902D3 /* sea.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = sea.mp3; sourceTree = "<group>"; };
+		A82A40901FD80E6A00C902D3 /* whale.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = whale.mp3; sourceTree = "<group>"; };
+		A82A40931FD841F200C902D3 /* river.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = river.mp3; path = ../../assets/sounds/river.mp3; sourceTree = "<group>"; };
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
 		B88F68D989354EE998F37FC1 /* libReactNativeConfig.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libReactNativeConfig.a; sourceTree = "<group>"; };
 		CE466BC32C4E4AC5A6F3723D /* RNSound.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNSound.xcodeproj; path = "../node_modules/react-native-sound/RNSound.xcodeproj"; sourceTree = "<group>"; };
@@ -587,7 +594,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				A82A40481FD7063300C902D3 /* rain.mp3 */,
+				A82A40651FD80C7E00C902D3 /* sounds */,
 				13B07FAE1A68108700A75B9A /* popopo */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* popopoTests */,
@@ -626,6 +633,17 @@
 				A82A40471FD705D900C902D3 /* libRNSound.a */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		A82A40651FD80C7E00C902D3 /* sounds */ = {
+			isa = PBXGroup;
+			children = (
+				A82A40931FD841F200C902D3 /* river.mp3 */,
+				A82A408F1FD80E6A00C902D3 /* sea.mp3 */,
+				A82A40901FD80E6A00C902D3 /* whale.mp3 */,
+				A82A40481FD7063300C902D3 /* rain.mp3 */,
+			);
+			path = sounds;
 			sourceTree = "<group>";
 		};
 		ADBDB9201DFEBF0600ED6528 /* Products */ = {
@@ -1100,12 +1118,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A82A40941FD841F900C902D3 /* river.mp3 in Resources */,
 				A82A40491FD7070C00C902D3 /* rain.mp3 in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				A82A40921FD80E6A00C902D3 /* whale.mp3 in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				573935F4473B497BBD5CB38D /* weathericons-regular-webfont.svg in Resources */,
 				4693DC2C53704039B6C29293 /* weathericons-regular-webfont.ttf in Resources */,
 				488DBDC5A68843CF9D74CCB2 /* weathericons-regular-webfont.woff in Resources */,
+				A82A40911FD80E6A00C902D3 /* sea.mp3 in Resources */,
 				9B35DF0176354C108205D2B1 /* weathericons-regular-webfont.woff2 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
