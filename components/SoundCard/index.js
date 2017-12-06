@@ -13,7 +13,6 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    backgroundColor: '#F0F2F0',
     padding: 10,
     borderRadius: 6,
     opacity: 0.7,
@@ -53,11 +52,12 @@ class SoundCard extends PureComponent {
     const { selected } = this.props;
     const { title, category, icon } = this.props.item;
     const volume = 4
+    const statusColor = selected ? '#F0F2F0' : 'transparent'
     return (
       <View style={styles.container}>
-        <TouchableOpacity style={styles.card} onPress={this._onPress}>
+        <TouchableOpacity style={[styles.card, { backgroundColor: statusColor }]} onPress={this._onPress}>
           <View style={styles.image}>
-            <Image source={icon} />
+            <Image source={icon} style={{ filter: 'sepia(1)' }} />
           </View>
           <Text style={[styles.text, selected ? styles.textSelected : null]}>
             {title}

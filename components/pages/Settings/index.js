@@ -4,6 +4,10 @@ import { StyleSheet, Text, View, TextInput, Image } from 'react-native';
 import Template from '../../templates';
 
 const styles = StyleSheet.create({
+  icon: {
+    width: 26,
+    height: 26,
+  },
   container: {
     display: 'flex',
     flexDirection: 'column',
