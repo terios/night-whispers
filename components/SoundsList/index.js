@@ -1,20 +1,25 @@
 import React, { PureComponent } from 'react';
-import { StyleSheet, View, FlatList, Text } from 'react-native';
+import PropTypes from 'prop-types'
+import { StyleSheet, View, FlatList } from 'react-native';
 
 import Sound from 'react-native-sound';
 import SoundCard from '../SoundCard';
 
 import Sounds from '../../data/sounds';
 
+
+const styles = StyleSheet.create({
+  container: {
+    width: '100%',
+  },
+});
+
 class SoundsList extends PureComponent {
   state = { selected: (new Map(): Map<string, boolean>) };
 
-  playSound = () => {
-    console.log(state.selected);
-  };
-  _keyExtractor = (item, index) => item.id;
+  keyExtractor = item => item.id;
 
-  _onPressItem = (id: string, fileName: string) => {
+  onPressItem = (id, fileName) => {
     console.log('ooool');
     this.setState((state) => {
       const selected = new Map(state.selected);
@@ -45,10 +50,10 @@ class SoundsList extends PureComponent {
     });
   };
 
-  _renderItem = ({ item }) => (
+  renderItem = ({ item }) => (
     <SoundCard
       id={item.id}
-      onPressItem={this._onPressItem}
+      onPressItem={this.onPressItem}
       selected={!!this.state.selected.get(item.id)}
       item={item}
     />
@@ -60,18 +65,23 @@ class SoundsList extends PureComponent {
           data={Sounds}
           numColumns={2}
           extraData={this.state}
-          renderItem={this._renderItem}
-          keyExtractor={this._keyExtractor}
+          renderItem={this.renderItem}
+          keyExtractor={this.keyExtractor}
         />
       </View>
     );
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    width: '100%',
-  },
-});
-
+SoundCard.propTypes = {
+  id: PropTypes.number.isRequired,
+  selected: PropTypes.bool,
+  onPressItem: PropTypes.func.isRequired,
+  item: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    category: PropTypes.string.isRequired,
+    fileName: PropTypes.string.isRequired,
+    icon: PropTypes.node.isRequired,
+  }),
+};
 export default SoundsList;

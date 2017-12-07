@@ -1,7 +1,9 @@
 import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types'
 import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
 
-import Slider from 'react-native-slider';
+import VolumeSlider from '../VolumeButton'
+import Colors from '../../constants/colors'
 
 const styles = StyleSheet.create({
   container: {
@@ -21,68 +23,53 @@ const styles = StyleSheet.create({
     paddingBottom: 5,
   },
   icon: {
-    color: '#1E88E5',
+    color: Colors.primary,
     opacity: 0.8,
   },
   textSelected: {
-    color: '#F4511E',
-  },
-  control: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
-  volumeSlider: {
-    width: '100%',
-    opacity: 0.8,
-  },
-  trackStyle: {
-    width: '100%',
-    opacity: 0.6,
+    color: Colors.secondary,
   },
 });
 class SoundCard extends PureComponent {
-  _onPress = () => {
+  onPress = () => {
     this.props.onPressItem(this.props.id, this.props.item.fileName);
   };
-  _onValumeChange = (volume) => {
+  onVolumeChange = (volume) => {
     console.log('update volume ', volume);
   };
   render() {
     const { selected } = this.props;
-    const { title, category, icon } = this.props.item;
+    const { title, icon } = this.props.item;
     const volume = 4
-    const statusColor = selected ? '#F0F2F0' : 'transparent'
+    const statusColor = selected ? Colors.accent1 : 'transparent'
     return (
       <View style={styles.container}>
-        <TouchableOpacity style={[styles.card, { backgroundColor: statusColor }]} onPress={this._onPress}>
+        <TouchableOpacity
+          style={[styles.card, { backgroundColor: statusColor }] }
+          onPress={this.onPress}
+          >
           <View style={styles.image}>
-            <Image source={icon} style={{ filter: 'sepia(1)' }} />
+            <Image source={icon} />
           </View>
           <Text style={[styles.text, selected ? styles.textSelected : null]}>
             {title}
           </Text>
         </TouchableOpacity>
-        <View style={styles.control}>
-          <Slider
-            value={volume}
-            onValueChange={value => this._onValumeChange({ value })}
-            minimumTrackTintColor='#1E88E5'
-            maximumTrackTintColor='#E0E0E0'
-            thumbTintColor='#EF5350'
-            minimumValue={0}
-            maximumValue={10}
-            step={1}
-            animateTransitions={true}
-            animationType='spring'
-            thumbTouchSize={{ width: 40, height: 40 }}
-            style={styles.volumeSlider}
-            trackStyle={styles.trackStyle}
-          />
-        </View>
+        <VolumeSlider volume={volume} onVolumeChange={this.onVolumeChange} />
       </View>
     );
   }
 }
 
+SoundCard.propTypes = {
+  id: PropTypes.number.isRequired,
+  selected: PropTypes.bool,
+  onPressItem: PropTypes.func.isRequired,
+  item: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    category: PropTypes.string.isRequired,
+    fileName: PropTypes.string.isRequired,
+    icon: PropTypes.node.isRequired,
+  }),
+};
 export default SoundCard;
