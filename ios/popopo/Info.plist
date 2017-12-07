@@ -57,5 +57,7 @@
 		<string>weathericons-regular-webfont.woff</string>
 		<string>weathericons-regular-webfont.woff2</string>
 	</array>
+	<key>BugsnagAPIKey</key>
+	<string>d887c1fbf8abb30b672f2c5ea65f81e6</string>
 </dict>
 </plist>
