@@ -20,7 +20,6 @@ class SoundsList extends PureComponent {
   keyExtractor = item => item.id;
 
   onPressItem = (id, fileName) => {
-    console.log('ooool');
     this.setState((state) => {
       const selected = new Map(state.selected);
       const soundState = selected.get(id);
