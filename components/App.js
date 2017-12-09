@@ -1,40 +1,41 @@
-import React, { Component } from 'react';
-import { Platform } from 'react-native';
+import React from 'react';
+import { connect } from 'react-redux';
+import { BackHandler } from 'react-native';
 
-import { TabNavigator } from 'react-navigation'
+import { TabNavigator, addNavigationHelpers, NavigationActions } from 'react-navigation'
+import routesConfig from './routes'
 
-import Landing from './pages/Landing'
-import Settings from './pages/Settings'
+export const AppNavigator = TabNavigator(routesConfig.routes, routesConfig.options);
 
-const Navigator = TabNavigator({
-  Landing: {
-    screen: Landing,
-    path: '',
-    navigationOptions: {
-      tabBarLabel: 'Landing',
-    },
-  },
-  Settings: {
-    screen: Settings,
-    path: 'settings',
-    navigationOptions: {
-      tabBarLabel: 'settings',
-    },
-  },
-}, {
-  animationEnabled: true,
-  activeTintColor: Platform.OS === 'ios' ? '#e91e63' : '#fff',
-  swipeEnabled: true,
-  tabBarOptions: {
-    showLabel: true,
-    showIcon: Platform.OS === 'ios',
-    style: {},
-  },
-});
+class App extends React.Component {
+  componentDidMount() {
+    BackHandler.addEventListener('hardwareBackPress', this.onBackPress);
+  }
+  componentWillUnmount() {
+    BackHandler.removeEventListener('hardwareBackPress', this.onBackPress);
+  }
+  onBackPress = () => {
+    const { dispatch, nav } = this.props;
+    if (nav.index === 0) {
+      return false;
+    }
+    dispatch(NavigationActions.back());
+    return true;
+  };
 
-class NavigatorComp extends Component {
   render() {
-    return Navigator
+    const { dispatch, nav } = this.props;
+    const navigation = addNavigationHelpers({
+      dispatch,
+      state: nav,
+    });
+
+    return <AppNavigator navigation={navigation} />;
   }
 }
-export default Navigator
+
+const mapStateToProps = state => ({
+  nav: state.nav,
+});
+
+export default connect(mapStateToProps)(App)
