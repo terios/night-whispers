@@ -1,6 +1,6 @@
 import { FETCHING_DATA, FETCHING_DATA_SUCCESS, FETCHING_DATA_FAILURE } from '../constants'
 
-export function getData() {
+export function fetchData() {
   return {
     type: FETCHING_DATA,
   }
@@ -13,10 +13,9 @@ export function getDataSuccess(data) {
   }
 }
 
-export function getDataFailure() {
+export function getDataFailure(error) {
   return {
     type: FETCHING_DATA_FAILURE,
+    errorMessage: error,
   }
 }
-
-export function fetchData() {}
