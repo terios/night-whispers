@@ -2,11 +2,14 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types'
 import { StyleSheet, View, FlatList } from 'react-native';
 
+import { connect } from 'react-redux'
+
 import Sound from 'react-native-sound';
 import SoundCard from '../SoundCard';
 
 import Sounds from '../../data/sounds';
 
+import { fetchData } from '../../store/actions/data'
 
 const styles = StyleSheet.create({
   container: {
@@ -20,6 +23,7 @@ class SoundsList extends PureComponent {
   keyExtractor = item => item.id;
 
   onPressItem = (id, fileName) => {
+    this.props.fetchData()
     this.setState((state) => {
       const selected = new Map(state.selected);
       const soundState = selected.get(id);
@@ -83,4 +87,20 @@ SoundCard.propTypes = {
     icon: PropTypes.node.isRequired,
   }),
 };
-export default SoundsList;
+
+function mapStateToProps(state) {
+  return {
+    appData: state.appData,
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    fetchData: () => dispatch(fetchData()),
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(SoundsList)
