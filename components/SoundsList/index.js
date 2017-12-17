@@ -8,8 +8,7 @@ import Sound from 'react-native-sound';
 import SoundCard from '../SoundCard';
 
 import Sounds from '../../data/sounds';
-
-import { fetchData } from '../../store/actions/data'
+import { playSound } from '../../store/actions/player'
 
 const styles = StyleSheet.create({
   container: {
@@ -23,20 +22,20 @@ class SoundsList extends PureComponent {
   keyExtractor = item => item.id;
 
   onPressItem = (id, fileName) => {
-    this.props.fetchData()
     this.setState((state) => {
       const selected = new Map(state.selected);
       const soundState = selected.get(id);
 
       if (soundState) {
         console.log('2');
-        const whoosh = selected.get(id);
-        whoosh.stop(() => {
-          console.log('stopped the sound');
-        });
-        selected.delete(id); // toggle
+        // const whoosh = selected.get(id);
+        // whoosh.stop(() => {
+        //  console.log('stopped the sound');
+        // });
+        // selected.delete(id); // toggle
       } else {
-        const whoosh = new Sound(fileName, Sound.MAIN_BUNDLE, (error) => {
+        this.props.playSound(id, fileName)
+        /* const whoosh = new Sound(fileName, Sound.MAIN_BUNDLE, (error) => {
           if (error) {
             console.log('failed to load the sound', error);
             return;
@@ -47,7 +46,8 @@ class SoundsList extends PureComponent {
             console.log('playing');
           });
         });
-        selected.set(id, whoosh); // toggle
+        */
+        // selected.set(id, whoosh); // toggle
       }
       return { selected };
     });
@@ -76,16 +76,8 @@ class SoundsList extends PureComponent {
   }
 }
 
-SoundCard.propTypes = {
-  id: PropTypes.number.isRequired,
-  selected: PropTypes.bool,
-  onPressItem: PropTypes.func.isRequired,
-  item: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    category: PropTypes.string.isRequired,
-    fileName: PropTypes.string.isRequired,
-    icon: PropTypes.node.isRequired,
-  }),
+SoundsList.propTypes = {
+  playSound: PropTypes.func.isRequired,
 };
 
 function mapStateToProps(state) {
@@ -96,7 +88,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    fetchData: () => dispatch(fetchData()),
+    playSound: (id, file) => dispatch(playSound(id, file)),
   }
 }
 
